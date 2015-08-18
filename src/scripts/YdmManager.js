@@ -80,13 +80,25 @@ export default {
     });
   },
 
+  info(ytid) {
+    let url = `http://youtube.com/watch?v=${ytid}`;
+    return new Promise((resolve, reject) => {
+      ytdl.getInfo(url, {}, (err, info) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(info);
+      });
+    });
+  },
+
   duplicate(item) {
     let downloads = this.parse(localStorage.getItem('downloads'));
     let video = downloads.find(download => {
       return download.get('id') === item.id;
     });
     console.log(video.get('done'));
-    let message = (video.get('done') ? 'The video has already been downloaded.' : 'The video is currently being downloaded.');
+    let message = (video.get('done') ? 'The video has already been downloaded.' : 'The video is currently in downloads.');
 
     return new Promise(resolve => {
       Dialog.showMessageBox({

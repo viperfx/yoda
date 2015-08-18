@@ -21,7 +21,9 @@ export default React.createClass({
 
   handleDownload(item){
     if(Actions.verify(item.id)){
-      Actions.prompt(item);
+      // Actions.prompt(item);
+      localStorage.setItem('preview', JSON.stringify(item));
+      this.transitionTo('preview', {ytid: item.id});
     } else {
       Actions.duplicate(item).then(group => {
         this.transitionTo('downloads', {group: group});
