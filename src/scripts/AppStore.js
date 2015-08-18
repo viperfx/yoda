@@ -6,6 +6,7 @@ import ChannelStore from './ChannelStore';
 import PlaylistStore from './PlaylistStore';
 import SearchStore from './SearchStore';
 import DownloadsStore from './DownloadsStore';
+import PreviewStore from './PreviewStore';
 
 const Stores = {
   channel: {
@@ -21,7 +22,13 @@ const Stores = {
   search: {
     name: SearchStore,
     data: 'results'
+  },
+
+  preview: {
+    name: PreviewStore,
+    data: 'videoInfo'
   }
+
 };
 
 class AppStore {
@@ -37,10 +44,11 @@ class AppStore {
       handleMore: Actions.more
     });
   }
-
+  
   handleLoading(store) {
     this.waitFor(Stores[store].name.dispatchToken);
     let data = Stores[store].name.getState()[Stores[store].data];
+    console.log(this.loading, data.count(), store, Stores[store].name.getState(),  Stores[store].data);
     if(data.count() > 0){
       this.loading = false;
     } else {

@@ -6,7 +6,7 @@ export default {
   },
 
   api: {
-    key: 'AIzaSyArV70XKUil3cEj4nKn1yuMXCHiuK2AytI',
+    key: 'AIzaSyB0Rdzmn2haPKG3YMEqFpPiYI1NrdLllx0',
 
     baseUrl: 'https://www.googleapis.com/youtube/v3/',
 

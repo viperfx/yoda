@@ -9,6 +9,7 @@ import Detail from './DetailContainer';
 import Channel from './ChannelContainer';
 import Playlist from './PlaylistContainer';
 import Downloads from './DownloadsContainer';
+import Preview from './PreviewContainer';
 
 const AppRoutes = (
   <Route name="app" path="/" handler={App}>
@@ -17,6 +18,7 @@ const AppRoutes = (
       <Route name="playlist" path="/playlist/:playlist" handler={Playlist} />
       <Route name="search" path="/search/:query" handler={Search} />
       <Route name="downloads" path="/downloads/:group" handler={Downloads} />
+      <Route name="preview" path="/preview/:ytid" handler={Preview} />
     </Route>
     <DefaultRoute name="setup" handler={Setup} />
   </Route>

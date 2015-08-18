@@ -16,6 +16,10 @@ class Actions {
     return Api.getChannels();
   }
 
+  fetchVideo(id) {
+    return Ydm.info(id);
+  }
+
   receiveChannelPlaylists(response) {
     this.dispatch(response);
     this.actions.loading('channel');
@@ -33,6 +37,26 @@ class Actions {
       this.actions.receiveChannelPlaylists(data);
     }).catch(err => {
       this.actions.failChannelPlaylists(err);
+    });
+  }
+
+  receivePreview(response) {
+    this.dispatch(response);
+    this.actions.loading('preview');
+  }
+
+  failPreview(err) {
+    this.dispatch(err);
+    this.actions.loading('preview');
+  }
+
+  fetchPreview(ytid) {
+    this.actions.loading('preview');
+    this.dispatch();
+    Ydm.info(ytid).then(data => {
+      this.actions.receivePreview(data);
+    }).catch(err => {
+      this.actions.failPreview(err);
     });
   }
 
@@ -113,6 +137,8 @@ class Actions {
       }
     });
   }
+
+
 
   cancel(id) {
     this.dispatch(id);
